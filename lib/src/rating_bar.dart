@@ -263,15 +263,14 @@ class _RatingBarState extends State<RatingBar> {
         _ratingWidget = SizedBox(
           width: widget.itemSize,
           height: widget.itemSize,
-          child:  _isRTL
-                ? Transform(
-                    transform: Matrix4.identity()..scale(-1.0, 1.0, 1.0),
-                    alignment: Alignment.center,
-                    transformHitTests: false,
-                    child: ratingWidget!.half,
-                  )
-                : ratingWidget!.half,
-       
+          child: _isRTL
+              ? Transform(
+                  transform: Matrix4.identity()..scale(-1.0, 1.0, 1.0),
+                  alignment: Alignment.center,
+                  transformHitTests: false,
+                  child: ratingWidget!.half,
+                )
+              : ratingWidget!.half,
         );
       }
       iconRating += 0.5;
@@ -279,8 +278,7 @@ class _RatingBarState extends State<RatingBar> {
       _ratingWidget = SizedBox(
         width: widget.itemSize,
         height: widget.itemSize,
-        child:   ratingWidget?.full ?? item,
-      
+        child: ratingWidget?.full ?? item,
       );
       iconRating += 1.0;
     }
@@ -412,26 +410,22 @@ class _HalfRatingWidget extends StatelessWidget {
           ? Stack(
               fit: StackFit.expand,
               children: [
-              _NoRatingWidget(
-                    child: child,
-                    size: size,
-                    unratedColor: unratedColor,
-                    enableMask: enableMask,
+                _NoRatingWidget(
+                  child: child,
+                  size: size,
+                  unratedColor: unratedColor,
+                  enableMask: enableMask,
+                ),
+                ClipRect(
+                  clipper: _HalfClipper(
+                    rtlMode: rtlMode,
                   ),
-       
-              ClipRect(
-                    clipper: _HalfClipper(
-                      rtlMode: rtlMode,
-                    ),
-                    child: child,
-                  ),
-            
+                  child: child,
+                ),
               ],
             )
-          :   child,
-              
-    )
-   
+          : child,
+    );
   }
 }
 
@@ -477,16 +471,15 @@ class _NoRatingWidget extends StatelessWidget {
     return SizedBox(
       height: size,
       width: size,
-      child:  enableMask
-            ? ColorFiltered(
-                colorFilter: ColorFilter.mode(
-                  unratedColor,
-                  BlendMode.srcIn,
-                ),
-                child: child,
-              )
-            : child,
- 
+      child: enableMask
+          ? ColorFiltered(
+              colorFilter: ColorFilter.mode(
+                unratedColor,
+                BlendMode.srcIn,
+              ),
+              child: child,
+            )
+          : child,
     );
   }
 }
