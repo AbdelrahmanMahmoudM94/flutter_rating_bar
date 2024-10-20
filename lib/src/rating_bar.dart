@@ -418,7 +418,7 @@ class _HalfRatingWidget extends StatelessWidget {
                     unratedColor: unratedColor,
                     enableMask: enableMask,
                   ),
-                ),
+       
               ClipRect(
                     clipper: _HalfClipper(
                       rtlMode: rtlMode,
@@ -430,7 +430,7 @@ class _HalfRatingWidget extends StatelessWidget {
             )
           :   child,
               
-          
+    )
    
   }
 }
